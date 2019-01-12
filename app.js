@@ -15,16 +15,29 @@ const getComputerChoice = () => {
     return choices[randomNumber];
 }
 
-const win = () => {
-    console.log('WIN');
+const convertedToWord = (letter) => {
+    if (letter === "r") return "Rock";
+    if (letter === "p") return "Paper";
+    return "Scissors"
 }
 
-const lose = () => {
-    console.log('LOSE');
+const win = (userChoice, computerChoice) => {
+    userScore ++;
+    userScore_span.innerHTML = userScore;
+    compScore_span.innerHTML = compScore;
+    result_p.innerHTML = `${convertedToWord(userChoice)} 😎 beats ${convertedToWord(computerChoice)} 🤖. You Win 🔥`
+    document.getElementById(userChoice).classList.add('green-glow');
 }
 
-const draw = () => {
-    console.log('DRAW');
+const lose = (userChoice, computerChoice) => {
+    compScore ++;
+    userScore_span.innerHTML = userScore;
+    compScore_span.innerHTML = compScore;
+    result_p.innerHTML = `${convertedToWord(userChoice)} ☹️ lose to ${convertedToWord(computerChoice)} 🤖. You Lost 💩`    
+}
+
+const draw = (userChoice, computerChoice) => {
+    result_p.innerHTML = `${convertedToWord(userChoice)} 😵️ draw to ${convertedToWord(computerChoice)} 🤖. It's a Draw 🤷‍♂️`    
 }
 
 const game = (userChoice) => {
@@ -33,7 +46,7 @@ const game = (userChoice) => {
         case "rs":
         case "pr":
         case "sp":
-            win();
+            win(userChoice, computerChoice);
             break
         case "rp":
         case "ps":
@@ -49,11 +62,9 @@ const game = (userChoice) => {
 }
 
 const main = () => {
-rock_div.addEventListener('click', clicked = () => game("r"));
-
-paper_div.addEventListener('click', clicked = () => game("p"));
-
-scissors_div.addEventListener('click', clicked = () => game("s"));
+rock_div.addEventListener('click', () => game("r"));
+paper_div.addEventListener('click', () => game("p"));
+scissors_div.addEventListener('click', () => game("s"));
 }
 
 main();
