@@ -25,19 +25,27 @@ const win = (userChoice, computerChoice) => {
     userScore ++;
     userScore_span.innerHTML = userScore;
     compScore_span.innerHTML = compScore;
+    const userChoice_div = document.getElementById(userChoice);
     result_p.innerHTML = `${convertedToWord(userChoice)} 😎 beats ${convertedToWord(computerChoice)} 🤖. You Win 🔥`
-    document.getElementById(userChoice).classList.add('green-glow');
+    userChoice_div.classList.add('green-glow');
+    setTimeout( () => userChoice_div.classList.remove('green-glow'), 500);
 }
 
 const lose = (userChoice, computerChoice) => {
     compScore ++;
     userScore_span.innerHTML = userScore;
     compScore_span.innerHTML = compScore;
-    result_p.innerHTML = `${convertedToWord(userChoice)} ☹️ lose to ${convertedToWord(computerChoice)} 🤖. You Lost 💩`    
+    const userChoice_div = document.getElementById(userChoice);
+    result_p.innerHTML = `${convertedToWord(userChoice)} ☹️ lose to ${convertedToWord(computerChoice)} 🤖. You Lost 💩`
+    userChoice_div.classList.add('red-glow');
+    setTimeout( () => userChoice_div.classList.remove('red-glow'), 500);
 }
 
 const draw = (userChoice, computerChoice) => {
-    result_p.innerHTML = `${convertedToWord(userChoice)} 😵️ draw to ${convertedToWord(computerChoice)} 🤖. It's a Draw 🤷‍♂️`    
+    const userChoice_div = document.getElementById(userChoice);
+    result_p.innerHTML = `${convertedToWord(userChoice)} 😵️ draw to ${convertedToWord(computerChoice)} 🤖. It's a Draw 🤷‍♂️`
+    userChoice_div.classList.add('yellow-glow');
+    setTimeout( () => userChoice_div.classList.remove('yellow-glow'), 500);
 }
 
 const game = (userChoice) => {
@@ -51,12 +59,12 @@ const game = (userChoice) => {
         case "rp":
         case "ps":
         case "sr":
-            lose();
+            lose(userChoice, computerChoice);
             break
         case "rr":
         case "pp":
         case "ss":
-            draw();
+            draw(userChoice, computerChoice);
             break
     }
 }
