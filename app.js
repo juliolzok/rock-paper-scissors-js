@@ -36,7 +36,7 @@ const lose = (userChoice, computerChoice) => {
     userScore_span.innerHTML = userScore;
     compScore_span.innerHTML = compScore;
     const userChoice_div = document.getElementById(userChoice);
-    result_p.innerHTML = `${convertedToWord(userChoice)} ☹️ lose to ${convertedToWord(computerChoice)} 🤖. You Lost 💩`
+    result_p.innerHTML = `${convertedToWord(userChoice)} ☹️ lose to ${convertedToWord(computerChoice)} 🤖. You Lost  💩`
     userChoice_div.classList.add('red-glow');
     setTimeout( () => userChoice_div.classList.remove('red-glow'), 500);
 }
